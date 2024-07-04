@@ -1,11 +1,11 @@
-<?php
+a<?php
 
 namespace App\Http\Requests;
 
 use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Foundation\Http\FormRequest;
 
-class UserRequest extends FormRequest
+class RiwayatHafalanRequest extends FormRequest
 {
     public $validator = null;
 
@@ -27,10 +27,12 @@ class UserRequest extends FormRequest
     public function rules()
     {
         return [
-            'santri_id' => 'required|exists:santris,id|unique:users,santri_id,'.$this->user,
-            'email' => 'required|string|email|max:255|unique:users,email,'.$this->user,
-            'password' => 'required|string|confirmed|min:8',
-            'role'  => 'required|in:Administrator,Pengurus,Santri'
+            'santri_id' => 'required|exists:santris,id',
+            'surah' => 'required|string|min:3',
+            'ayat' => 'required|integer|min:1',
+            'juz' => 'required|integer|min:1|max:30',
+            'tanggal_hafalan' => 'required|date',
+            'keterangan' => 'nullable|string'
         ];
     }
 

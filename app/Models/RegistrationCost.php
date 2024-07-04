@@ -6,16 +6,20 @@ use App\Traits\Uuids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Santri extends Model
+class RegistrationCost extends Model
 {
     use HasFactory, Uuids;
 
     public $incrementing = false;
     protected $guarded = [];
 
-    public function user()
+    public function santris()
     {
-        return $this->hasOne(User::class);
+        return $this->belongsTo(Santri::class, 'santri_id');
     }
 
+    public function cash_book()
+    {
+        return $this->hasOne(CashBook::class);
+    }
 }

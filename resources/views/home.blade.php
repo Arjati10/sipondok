@@ -13,6 +13,7 @@
                     <h4>Santri</h4>
                 </div>
                 <div class="card-body">
+                    {{ $santri }}
                 </div>
             </div>
         </div>
@@ -27,7 +28,7 @@
                     <h4>Surat Masuk</h4>
                 </div>
                 <div class="card-body">
-                 
+                    
                 </div>
             </div>
         </div>
@@ -42,7 +43,7 @@
                     <h4>Surat Keluar</h4>
                 </div>
                 <div class="card-body">
-                
+                    
                 </div>
             </div>
         </div>
@@ -57,6 +58,7 @@
                     <h4>Pengguna</h4>
                 </div>
                 <div class="card-body">
+                    {{ $users }}
                 </div>
             </div>
         </div>
@@ -71,6 +73,7 @@
                     <h4>Pemasukan Kas</h4>
                 </div>
                 <div class="card-body">
+                    <h5></h5>
                 </div>
             </div>
         </div>
@@ -85,6 +88,7 @@
                     <h4>Pengeluaran Kas</h4>
                 </div>
                 <div class="card-body">
+                    <h5></h5>
                 </div>
             </div>
         </div>
@@ -99,6 +103,7 @@
                     <h4>Saldo Kas</h4>
                 </div>
                 <div class="card-body">
+                    <h5></h5>
                 </div>
             </div>
         </div>

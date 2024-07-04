@@ -13,7 +13,7 @@
 
     <div class="row">
         <div class="col-md-8">
-            
+            <a href="{{ route('santri.create') }}" class="btn btn-primary">Tambah Santri</a><br><br>
         </div>
         <div class="col-md-4 mb-3">
             <form action="#" class="flex-sm">
@@ -21,7 +21,7 @@
                     <input type="text" name="keyword" class="form-control" placeholder="Search" value="{{ Request::get('keyword') }}">
                     <div class="input-group-append">
                         <button class="btn btn-primary mr-2 rounded-right" type="submit"><i class="fas fa-search"></i></button>
-                        <button onclick="window.location.href=''" type="button" class="btn btn-md btn-secondary rounded"><i class="fas fa-sync-alt"></i></button>
+                        <button onclick="window.location.href='{{ route('santri.index') }}'" type="button" class="btn btn-md btn-secondary rounded"><i class="fas fa-sync-alt"></i></button>
                     </div>
                 </div>
             </form>
@@ -40,26 +40,34 @@
                 </tr>
             </thead>
             <tbody>
+                @forelse ($data as $santri => $result)
                     <tr>
-                        <td></td>
-                        <td><a href=""></a></td>
-                        <td></td>
-                        <td></td>
+                        <td>{{ $santri + $data->firstitem() }}</td>
+                        <td><a href="{{ route('santri.show', $result->id) }}">{{ $result->nama }}</a></td>
+                        <td>{{ $result->alamat }}</td>
+                        <td>{{ $result->phone }}</td>
                         <td align="center">
-                            
+                            @if (Auth::user()->role == 'Pengurus')
+                                <a href="{{ route('santri.edit', $result->id) }}" type="button" class="btn btn-sm btn-info"><i class="fas fa-pen"></i></a>
+                            @else                                
+                                <a href="{{ route('santri.edit', $result->id) }}" type="button" class="btn btn-sm btn-info"><i class="fas fa-pen"></i></a>
+                                <a href="javascript:void(0)" id="btn-delete" class="btn btn-sm btn-danger" onclick="deleteData('{{ $result->id }}')" data-toggle="modal" data-target="#deleteSantriModal"><i class="fas fa-trash"></i></a>
+                            @endif
                         </td>
                     </tr>
-                
+                @empty
                     <tr>
                         <td colspan="6">Tidak ada data.</td>
                     </tr>
-                </tbody>
+                @endforelse
+            </tbody>
         </table>
     </div>
     <div class="mt-2 float-left">
-
+        <span class="ml-3">Data Keseluruhan: <span class="text-primary font-weight-bold">{{ DB::table('santris')->count() }}</span> Santri telah terdaftar.</span>
     </div>
     <div class="mt-3 float-right">
+        {{ $data->links() }}
     </div>
 
 @endsection
@@ -73,7 +81,7 @@
                 @csrf
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h4 class="modal-title" id="vcenter">Hapus Santri</h4>
+                        <h4 class="modal-title" id="center">Hapus Santri</h4>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
@@ -94,7 +102,11 @@
 @section('script')
     <script>
         function deleteData(id) {
+            let url = '{{ route("santri.destroy", ":id") }}';
+            url     = url.replace(':id', id);
+            $("#deleteForm").attr('action', url);
         }
+
         function formSubmit() {
             $("#deleteForm").submit();
         }

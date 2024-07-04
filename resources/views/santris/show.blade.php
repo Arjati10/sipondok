@@ -24,19 +24,19 @@
             <div class="col-sm">
                 <div class="form-group">
                     <label for="name">Nama Santri</label>
-                    <h4>{{ $santri->name }}</h4>
+                    <h4>{{ $santri->nama }}</h4>
                 </div>
             </div>
             <div class="col-sm">
                 <div class="form-group">
                     <label for="birth_place">Tempat Lahir Santri</label>
-                    <h4>{{ $santri->birth_place }}</h4>
+                    <h4>{{ $santri->tempat_lahir }}</h4>
                 </div>
             </div>
             <div class="col-sm">                   
                 <div class="form-group">
                     <label for="birth_date">Tanggal Lahir Santri</label>
-                    <h4>{{ \Carbon\Carbon::parse($santri->birth_date)->isoFormat('D MMMM Y') }}</h4>
+                    <h4>{{ \Carbon\Carbon::parse($santri->tanggal_lahir)->isoFormat('D MMMM Y') }}</h4>
                 </div>
             </div>
         </div>
@@ -50,83 +50,87 @@
             <div class="col-sm-8">
                 <div class="form-group">
                     <label for="address">Alamat Santri</label>
-                    <h4>{{ $santri->address }}</h4>
+                    <h4>{{ $santri->alamat }}</h4>
                 </div>
             </div>
         </div>
         <div class="row">
             <div class="col-sm-4">
                 <div class="form-group">
-                    <label for="school_old">Asal Sekolah Santri</label>
-                    <h4>{{ $santri->school_old }}</h4>
+                    <label for="school_old">NISN</label>
+                    <h4>{{ $santri->nisn }}</h4>
                 </div>
             </div>
-            <div class="col-sm-8">
+            <div class="col-sm-4">
                 <div class="form-group">
-                    <label for="school_address_old">Alamat Asal Sekolah Santri</label>
-                    <h4>{{ $santri->school_address_old }}</h4>
+                    <label for="school_address_old">Nama Ayah</label>
+                    <h4>{{ $santri->nama_ayah }}</h4>
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <div class="form-group">
+                    <label for="school_address_old">Nama Ibu</label>
+                    <h4>{{ $santri->nama_ibu }}</h4>
                 </div>
             </div>
         </div>
         <div class="row">
             <div class="col-sm-4">
                 <div class="form-group">
-                    <label for="school_current">Sekolah Sekarang Santri</label>
-                    <h4>{{ $santri->school_current }}</h4>
+                    <label for="school_current">NIK</label>
+                    <h4>{{ $santri->nik }}</h4>
                 </div>
             </div>
-            <div class="col-sm-8">
+            <div class="col-sm-4">
                 <div class="form-group">
-                    <label for="school_address_current">Alamat Sekolah Sekarang Santri</label>
-                    <h4>{{ $santri->school_address_current }}</h4>
+                    <label for="school_address_current">Pekerjaan Ayah</label>
+                    <h4>{{ $santri->pekerjaan_ayah }}</h4>
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <div class="form-group">
+                    <label for="school_address_current">Pekerjaan Ibu</label>
+                    <h4>{{ $santri->pekerjaan_ibu }}</h4>
                 </div>
             </div>
         </div>
         <div class="row">
             <div class="col-sm-4">
                 <div class="form-group">
-                    <label for="father_name">Nama Ayah Santri</label>
-                    <h4>{{ $santri->father_name }}</h4>
+                    <label for="father_name">Nomor KK</label>
+                    <h4>{{ $santri->no_kk }}</h4>
                 </div>
             </div>
-            <div class="col-sm-8">
-                <div class="form-group">
-                    <label for="father_job">Pekerjaan Ayah Santri</label>
-                    <h4>{{ $santri->father_job }}</h4>
-                </div>
-            </div>
-        </div>
-        <div class="row">            
             <div class="col-sm-4">
                 <div class="form-group">
-                    <label for="mother_name">Nama Ibu Santri</label>
-                    <h4>{{ $santri->mother_name }}</h4>
+                    <label for="father_job">Riwayat Pendidikan Ayah</label>
+                    <h4>{{ $santri->riwayat_pendidikan_ayah }}</h4>
                 </div>
             </div>
-            <div class="col-sm-8">
+            <div class="col-sm-4">
                 <div class="form-group">
-                    <label for="mother_job">Pekerjaan Ibu Santri</label>
-                    <h4>{{ $santri->mother_job }}</h4>
+                    <label for="father_job">Riwayat Pendidikan Ibu</label>
+                    <h4>{{ $santri->riwayat_pendidikan_ibu }}</h4>
                 </div>
             </div>
         </div>
         <div class="row">
-            <div class="col-sm">
+            <div class="col-sm-4">
+                <div class="form-group">
+                    <label for="mother_name"></label>
+                    <h4></h4>
+                </div>
+            </div>    
+            <div class="col-sm-4">
                 <div class="form-group">
                     <label for="parent_phone">No. HP Orang Tua Santri</label>
-                    <h4>{{ $santri->parent_phone }}</h4>
+                    <h4>{{ $santri->telfon_orang_tua }}</h4>
                 </div>
             </div>
-            <div class="col-sm">
+            <div class="col-sm-4">
                 <div class="form-group">
                     <label for="entry_year">Tahun Masuk</label>
-                    <h4>{{ $santri->entry_year }}</h4>
-                </div>
-            </div>
-            <div class="col-sm">
-                <div class="form-group">
-                    <label for="year_out">Tahun Keluar</label>
-                    <h4>{{ $santri->year_out ?: "-" }}</h4>
+                    <h4>{{ $santri->tahun_masuk }}</h4>
                 </div>
             </div>
         </div>

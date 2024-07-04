@@ -18,26 +18,26 @@
                     <i class="fas fa-users"></i><span>Data Santri</span>
                 </a>
             </li>
-            <li class="menu-header">User</li>
-            <li class="{{ (request()->routeIs('user*')) ? 'active' : '' }}">
-                <a href="{{ route('user.index') }}" class="nav-link">
-                    <i class="fas fa-user-cog"></i><span>Data Pengguna</span>
+            <li class="menu-header">Ustadz</li>
+            <li class="{{ (request()->routeIs('pengguna*')) ? 'active' : '' }}">
+                <a href="{{ route('pengguna.index') }}" class="nav-link">
+                    <i class="fas fa-user-cog"></i><span>Data Ustadz</span>
                 </a>
             </li>
             <li class="menu-header">Hafalan Surat   </li>
             <li class="{{ (request()->routeIs('hafalan*')) ? 'active' : '' }}">
                 <a href="{{ route('hafalan.index') }}" class="nav-link">
-                    <i class="fas fa-file-invoice"></i><span>Tambah Hafalan</span>
+                    <i class="fas fa-file-invoice"></i><span>Data Hafalan</span>
                 </a>
             </li>
-            <li class="{{ (request()->routeIs('riwayat*')) ? 'active' : '' }}">
+            <!-- <li class="{{ (request()->routeIs('riwayat*')) ? 'active' : '' }}">
                 <a href="{{ route('riwayat_hafalan.index') }}" class="nav-link">
-                    <i class="far fa-file-alt"></i><span>Syahriah</span>
+                    <i class="far fa-file-alt"></i><span>Tambah Hafalan</span>
                 </a>
-            </li>
+            </li> -->
             <li class="menu-header">Logs</li>
-            <li class="{{ (request()->routeIs('log-activities')) ? 'active' : '' }}">
-                <a href="{{ route('log-activities') }}" class="nav-link">
+            <li class="{{ (request()->routeIs('logs.index')) ? 'active' : '' }}">
+                <a href="{{ route('logs.index') }}" class="nav-link">
                     <i class="fas fa-history"></i><span>Log Aktivitas</span>
                 </a>
             </li>

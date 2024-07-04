@@ -27,12 +27,12 @@ class HafalanRequest extends FormRequest
     public function rules()
     {
         return [
-            'santri_id' => 'required|exists:santris,id',
-            'surah' => 'required|string|min:3',
-            'ayat' => 'required|integer|min:1',
-            'juz' => 'required|integer|min:1|max:30',
-            'tanggal_hafalan' => 'required|date',
-            'keterangan' => 'nullable|string'
+            'santri_id'          => 'required|exists:santris,id',
+            'surah'              => 'required|string|max:255',
+            'ayat'               => 'required|string|max:255',
+            'juz'                => 'required|string|max:255',
+            'tanggal_hafalan'    => 'required|date',
+            'keterangan'         => 'nullable|string',
         ];
     }
 

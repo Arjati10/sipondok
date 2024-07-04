@@ -36,20 +36,10 @@ class HomeController extends Controller
     {
         $santri   = $santri->count();
         $users    = $user->count();
-        $in_mail  = $inMail->count();
-        $out_mail = $outMail->count();
-        $debit    = $cashBook->sum('debit');
-        $credit   = $cashBook->sum('credit');
-        $balance  = $cashBook->sum(DB::raw('debit - credit'));
         
         return view('home', compact(
             'santri',
             'users',
-            'debit',
-            'credit',
-            'balance',
-            'in_mail',
-            'out_mail'
         ));
     }
 }

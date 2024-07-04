@@ -15,7 +15,7 @@
                                 <option value="{{ $santri->id }}"
                                     @if (\App\Models\User::where('santri_id', $santri->id)->exists())
                                         disabled
-                                    @endif>{{ $santri->name }}</option>
+                                    @endif>{{ $santri->nama }}</option>
                             @endforeach
                         </select>
             

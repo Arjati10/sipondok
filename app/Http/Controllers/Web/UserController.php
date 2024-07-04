@@ -38,7 +38,7 @@ class UserController extends Controller
                 ->where('email', 'LIKE', "%$keyword%")
                 ->orWhere('role', 'LIKE', "%$keyword%")
                 ->orWhereHas('santris', function ($query) use ($keyword) {
-                    $query->where('name', 'LIKE', "%$keyword%");
+                    $query->where('nama', 'LIKE', "%$keyword%");
                 })
                 ->latest()
                 ->paginate(10);
@@ -83,7 +83,7 @@ class UserController extends Controller
      */
     public function edit($id)
     {
-        if (Gate::allows('admin')) {
+        if (auth()->user()->role == 'Administrator') {
             $data = Santri::all();
             $user = User::findOrFail($id);
             return view('user.edit', compact('user', 'data'));
@@ -100,7 +100,7 @@ class UserController extends Controller
      */
     public function update(UserRequest $request, $id)
     {
-        if (Gate::allows('admin')) {
+        if (auth()->user()->role == 'Administrator') {
             $user = User::findOrFail($id);
             $validatedData = $request->all();
             $validatedData['password'] = Hash::make($request->password);
@@ -121,7 +121,7 @@ class UserController extends Controller
      */
     public function destroy($id)
     {
-        if (Gate::allows('admin')) {
+        if (auth()->user()->role == 'Administrator') {
             $user = User::findOrFail($id);
 
             if (auth()->user() == $user) {

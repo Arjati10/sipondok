@@ -33,8 +33,8 @@ class SantriController extends Controller
         $data       = Santri::latest()->paginate(10);
         $keyword    = $request->keyword;
         if ($keyword)
-            $data   = Santri::where('name', 'LIKE', "%$keyword%")
-                ->orWhere('address', 'LIKE', "%$keyword%")
+            $data   = Santri::where('nama', 'LIKE', "%$keyword%")
+                ->orWhere('alamat', 'LIKE', "%$keyword%")
                 ->orWhere('phone', 'LIKE', "%$keyword%")
                 ->latest()
                 ->paginate(10);
@@ -145,26 +145,42 @@ class SantriController extends Controller
      * @param  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
-    {
-        if (Gate::allows('admin')) {
-            $santri = Santri::findOrFail($id);
-            $user = User::where('santri_id', $id)->first();
-           
-            if (auth()->user() == $user) {
-                return redirect()->back()
-                    ->with('alert','Gagal menghapus data sendiri.');
-            }
+    /**
+ * Remove the specified resource from storage.
+ *
+ * @param  $id
+ * @return \Illuminate\Http\Response
+ */
+public function destroy($id)
+{
+    $santri = Santri::findOrFail($id);
+    $user = User::where('santri_id', $id)->first();
 
-            $filePath = public_path('storage/photo/'.$santri->photo);
-            if(File::exists($filePath)) File::delete($filePath);
-            $santri->delete();
-
-            LogActivity::addToLog('Hapus Data Santri');
-            return redirect()->route('santri.index')
-                ->with('alert','Data Santri berhasil dihapus.');
-        }
-        
-        abort(403);
+    // Check if the user is not null and prevent the user from deleting their own data
+    if ($user && auth()->user()->id == $user->id) {
+        return redirect()->back()->with('alert', 'Gagal menghapus data sendiri.');
     }
+
+    // Check if the current authenticated user has 'Administrator' or 'Pengurus' role
+    if (auth()->user()->role == 'Administrator') {
+        // Delete the photo file if it exists
+        $filePath = public_path('storage/photo/' . $santri->photo);
+        if (File::exists($filePath)) {
+            File::delete($filePath);
+        }
+
+        // Delete the Santri record
+        $santri->delete();
+
+        // Log the deletion activity
+        LogActivity::addToLog('Hapus Data Santri');
+
+        // Redirect to the Santri index page with a success message
+        return redirect()->route('santri.index')->with('alert', 'Data Santri berhasil dihapus.');
+    }
+
+    // If the user does not have the required role, abort with a 403 status
+    abort(403);
+}
+
 }

@@ -45,9 +45,6 @@
             </div>
           </div>
         </div>
-        <div class="simple-footer mt-5">
-          Copyright &copy; 2022 <div class="bullet"></div> Pondok Pesantren | Template by <a href="https://getstisla.com/" target="_blank">Stisla</a>
-        </div>
       </div>
     </section>
   </div>

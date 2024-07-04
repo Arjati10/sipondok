@@ -16,7 +16,7 @@
                                 <option value="{{ $santri->id }}"
                                     @if ($santri->id == $user->santri_id)
                                         selected
-                                    @endif>{{ $santri->name }}</option>
+                                    @endif>{{ $santri->nama }}</option>
                             @endforeach
                         </select>
         

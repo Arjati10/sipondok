@@ -5,11 +5,9 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Hafalan extends Model
+class RiwayatHafalan extends Model
 {
     use HasFactory;
-
-    protected $table = 'hafalan';
 
     protected $fillable = [
         'santri_id',
@@ -20,7 +18,6 @@ class Hafalan extends Model
         'keterangan'
     ];
 
-    // Relasi dengan model Santri
     public function santri()
     {
         return $this->belongsTo(Santri::class);

@@ -30,21 +30,24 @@
                 </tr>
             </thead>
             <tbody>
+                @forelse($data as $log => $result)
                     <tr align="center">
-                        <td></td>
-                        <td><small class="text-primary"></small></td>
-                        <td></td>
-                        <td><small class="text-warning"></small></td>
-                        <td> <br><small class="text-info"></small> </td>
+                        <td>{{ $log + $data->firstitem()  }}</td>
+                        <td><small class="text-primary">{{ \Carbon\Carbon::parse($result->created_at)->diffForHumans() }}</small></td>
+                        <td>{{ $result->subject }}</td>
+                        <td><small class="text-warning">{{ $result->url }}</small></td>
+                        <td>{{ $result->users->santris->name }} <br><small class="text-info">{{ $result->users->email }}</small> </td>
                     </tr>
+                @empty
                     <tr>
                         <td colspan="5">Tidak ada data.</td>
                     </tr>
+                @endforelse
             </tbody>
         </table>
     </div>
     <div class="mt-3">
-        
+        {{ $data->links() }}
     </div>
 
 @endsection
